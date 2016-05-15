@@ -1,5 +1,50 @@
 #### pkpraclinuxsecucok
 use ubuntu 14.04
+#####3
+######viewing file and directory
+list by column
+```
+ls -FC
+```
+exclude all the files and display only their subdict
+```
+ls -d */
+```
+ls all subdict
+```
+ls -R
+```
+######changing the file permisstions using chmod
+copy file1's permission to file2
+```
+chmod --reference=file1 file2
+```
+######implementing access control list
+```
+touch a
+useradd a
+passwd -d a
+setfacl -m u:a:rwx a
+setfacl -m other:--- a
+getfacl a
+getfacl -R /etc
+```
+
+save and restore
+```
+getfacl -R /etc > res.acl
+cd /anotherfolder
+setfact -- restore=res.acl
+```
+######filehandling nv
+```
+mv file1 file2 file3 /home/
+```
+using regex
+```
+mv -v *.txt /home
+```
+
 #####7
 ######Linux (sxid)
 ```
@@ -78,6 +123,30 @@ SSLEngine on
 SSLCertificateFile  /etc/apache2/ssl/server.crt
 SSLCertificateKeyFile /etc/apache2/ssl/server.key
 ```
+######tripwire
+######shorewall
+```
+apt-get install shorewall -y
+```
+must config before start
+```
+vim /etc/default/shorewall
+```
+edit
+```
+startup=1
+```
+then
+```
+vim /etc/shorewall/shorewall.conf
+```
+edit
+```
+IP_FORWARDING=On
+```
+eth0->external eth1->internal
+
+
 
 
 #####10
