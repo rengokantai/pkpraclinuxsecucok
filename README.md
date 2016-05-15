@@ -1,4 +1,85 @@
 #### pkpraclinuxsecucok
+use ubuntu 14.04
+#####7
+######Linux (sxid)
+```
+apt-get install sxid -y
+```
+```
+vim /etc/sxid.conf
+```
+edit
+```
+EMAIL="rengokantai"
+KEEP_LOGS="5"
+ALWAYS_NOTIFY="yes"
+SEARCH
+EXCLUDE
+```
+run command
+```
+sxid -c /etc/scid.conf -k
+```
+######portsentry (base on nmap)
+```
+apt-get install portsentry
+```
+```
+grep portsentry /var/log/syslog
+```
+config
+```
+vim /etc/portsentry/portsentry.conf
+```
+edit
+```
+# block scan
+BLOCK_UDP="1"
+BLOCK_TCP="1"
+```
+and
+```
+# iptables support for Linux
+KILL_ROUTE="/sbin/iptables -I INPUT -s $TARGET$ -j DROP"
+```
+other file:
+```
+vim /etc/default/portsentry
+```
+edit
+```
+TCP_MODE="atcp"
+UDP_MODE="audp"
+```
+
+######using squid proxy
+```
+apt-get update -y && apt-get upgrade && apt-get install squid
+```
+
+######openssl server
+```
+apt-get install openssl apache2 -y
+a2enmod ssl
+```
+
+```
+mkdir /etc/apache2/ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt
+```
+
+Edit in
+```
+vim /etc/apache2/sites-avilable/default
+```
+
+```
+SSLEngine on
+SSLCertificateFile  /etc/apache2/ssl/server.crt
+SSLCertificateKeyFile /etc/apache2/ssl/server.key
+```
+
+
 #####10
 ######viewing and managing log files (logcheck)
 ```
