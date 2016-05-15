@@ -57,4 +57,11 @@ to edit conf
 /etc/glances/glances.conf
 ```
 
+######monitoring logs using multitail
+```
+apt-get install multitail
+```
 
+monitor two log files simultaneously
+```
+/etc/glances/glances.conf
