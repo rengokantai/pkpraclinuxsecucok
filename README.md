@@ -2,7 +2,7 @@
 #####10
 ######viewing and managing log files (logcheck)
 ```
-apt-get install logcheck
+apt-get install logcheck -y
 ```
 config file:
 ```
@@ -30,7 +30,7 @@ edit(monitor all paths you want to monitor)
 ```
 ######monitoring a network (nmap)
 ```
-apt-get install nmap
+apt-get install nmap -y
 nmap -sP 192.168.1.0/24
 nmap -O 192.168.1.1
 ```
@@ -57,11 +57,63 @@ to edit conf
 /etc/glances/glances.conf
 ```
 
-######monitoring logs using multitail
+######monitoring logs using (multitail)
 ```
 apt-get install multitail
 ```
 
 monitor two log files simultaneously
 ```
-/etc/glances/glances.conf
+multitail /var/log/syslog /var/log/boot.log
+```
+b to choose between, q to exit
+```
+multitail -s 2 /var/log/syslog /var/log/boot.log  //two lines
+```
+customize color
+```
+multitail -ci yellow /var/log/syslog -ci blue /var/log/boot.log
+```
+######system tools (whowatch)
+```
+apt-get install whowatch
+```
+run:
+```
+whoswatch
+```
+press F9 to go menu bar.
+######stat
+```
+stat a.txt
+stat -f /dev/sda2
+stat a.*
+```
+######list open files (lsof)
+list files belong to user
+```
+lsof -u ubuntu
+```
+process running on paticular port
+```
+lsof -i TCP:22
+```
+
+###### strace
+```
+strace -o output.txt ls
+```
+######auditing log files on linux (lynis)
+```
+apt-get install lynis -y
+```
+start a scan
+```
+lynis -c
+```
+log is saved see
+```
+vim /var/log/lynis.log
+```
+
+
