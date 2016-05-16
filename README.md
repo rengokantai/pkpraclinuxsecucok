@@ -6,6 +6,25 @@ use ubuntu 14.04
 apt-get install gtkhash -y
 ```
 
+######USING luks
+```
+telinit 1
+umount /home
+fuser -mvk /home
+```
+check to confirm that the /home partition is not mounted
+```
+grep home /proc/mounts
+```
+
+
+######scanning hosts with nmap
+scan a range
+```
+nmap -vv -sP 1.2.3.4-100
+```
+
+
 #####3
 ######viewing file and directory
 list by column
@@ -62,6 +81,42 @@ then
 apt-get install phpldapadmin
 ```
 <end>
+
+#####4
+######user auth
+check all incorrect login attempts for a particular user
+```
+lastb user
+```
+get auth log last 10
+```
+tail -n 10 /var/log/auth.log
+```
+And the last command.
+```
+last
+```
+######Limiting the login capa
+```
+passwd -l user1   // usermod -L user1
+passwd -u user1   // usermod -U user1
+passwd -S user1  //show status of user. L=locked P=not
+```
+
+
+#####5
+######disabling or enabling SSH root
+######Restricting remote access with key
+```
+ssh-keygen -t rsa
+ssh-copy-id remote_ip
+```
+######copYing remotely
+```
+sftp
+get file.txt /etc    //copy /etc/file.txt to local
+```
+
 
 #####6
 
