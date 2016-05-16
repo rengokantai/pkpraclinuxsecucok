@@ -1,5 +1,11 @@
 #### pkpraclinuxsecucok
 use ubuntu 14.04
+#####1
+######conducting integrity checks
+```
+apt-get install gtkhash -y
+```
+
 #####3
 ######viewing file and directory
 list by column
@@ -92,6 +98,38 @@ but these changes are non persistent.Hence
 apt-get install iptables-persistent
 service iptables-persistent start
 ```
+######blocking spoofed addresses
+```
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+```
+create a new table call blocked
+```
+iptables -N blocked
+```
+insert `block`table into INPUT table.
+```
+iptables -I INPUT 2 -j blocked
+```
+add a ip address into blocked table
+```
+iptables -A blocked -s 192.168.1.222 -j DROP
+```
+then
+```
+vim /etc/host.conf
+```
+edit
+```
+nospoof on
+```
+
+######block incoming traffic
+```
+iptables -A INPUT -i lo -j ACCEPT
+```
+
+
 
 
 
