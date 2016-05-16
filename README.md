@@ -36,7 +36,7 @@ getfacl -R /etc > res.acl
 cd /anotherfolder
 setfact -- restore=res.acl
 ```
-######filehandling nv
+######filehandling using mv
 ```
 mv file1 file2 file3 /home/
 ```
@@ -44,6 +44,56 @@ using regex
 ```
 mv -v *.txt /home
 ```
+
+######install ldap
+```
+apt-get install slapd -y
+apt-get install ldap-utils
+dpkg-reconfigure slapd->No->
+```
+then
+```
+apt-get install phpldapadmin
+```
+<end>
+
+#####6
+
+######tcp ip
+lshw  list all hardware
+```
+lshw -class network
+```
+```
+service network-manager restart  //redhat?
+```
+######using iptables to configure a firewall
+```
+iptables -v  //version
+```
+
+```
+iptables -S
+```
+```
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+```
+insert a role at index
+```
+iptables -I INPUT 1 -i lo -j ACCEPT
+```
+block input chain
+```
+iptables -A INPUT -j DROP
+```
+but these changes are non persistent.Hence
+```
+apt-get install iptables-persistent
+service iptables-persistent start
+```
+
+
 
 #####7
 ######Linux (sxid)
